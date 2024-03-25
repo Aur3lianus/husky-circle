@@ -1,0 +1,38 @@
+HUSKY CIRCULAR PUBLISHER
+
+Description:
+This package is used to make Husky spin in circles.
+
+Requirements:
+ROS2 Humble installation
+Gazebo Fortress installation
+A working robot.yaml file (warning - the official clearpath documentation provides a .yaml file, which does not work - one has to be found in the clearpath repository, or somewhere else on the internet)
+The robot should be called a200_0000 in the .yaml file. If it isn't, or you are using a different version of Gazebo, you might have to remap the topic (see the Remapping section below)
+
+Installation:
+1. Clone the package source code into the src folder of your workspace.
+2. Build the workspace, using:
+colcon build
+You can also build this package alone:
+colcon build --packages-select husky-circle
+
+Usage:
+1. Run a Gazebo Fortress simulation and hit play.
+2. Sourcing the setup.bash file
+In the terminal, navigate to the workspace, in which you have built this package, and use the command:
+source install/setup.bash
+3. Running the node 
+Run the node, using the line:
+ros2 run husky-circle husky_circle_pub
+The husky should now spin left, with a velocity of 0.5.
+4. Changing spinning parameters
+There are two parameters that can be altered: spinning_speed and spinning_direction. They can be viewed using:
+ros2 param list
+In a new terminal, use the commands below:
+ros2 param set /husky_circle_publisher spinning_speed {your velocity}
+ros2 param set /husky_circle_publisher spinning_direction {direction}
+Speed accepts double variables, and direction strings: right or left. The default setting is left: in fact, changing the parameter to anything other than "right" will make husky spin left.
+
+Remapping:
+First, find the topic to which husky is subscribed. Then, launch the husky_circle_pub node with the additional argument:
+ros2 run husky-circle husky_circle_pub --ros-args --remap /a200_0000/cmd_vel:={your topic name}
