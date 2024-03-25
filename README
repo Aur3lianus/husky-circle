@@ -7,7 +7,7 @@ Requirements:
 ROS2 Humble installation
 Gazebo Fortress installation
 A working robot.yaml file (warning - the official clearpath documentation provides a .yaml file, which does not work - one has to be found in the clearpath repository, or somewhere else on the internet)
-The robot should be called a200_0000 in the .yaml file. If it isn't, or you are using a different version of Gazebo, you might have to remap the topic (see the Remapping section below)
+The ros2 namespace should be called a200_0000 in the .yaml file. If it isn't, or you are using a different version of Gazebo, you might have to remap the topic (see the Remapping section below)
 
 Installation:
 1. Clone the package source code into the src folder of your workspace.
